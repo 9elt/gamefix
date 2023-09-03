@@ -1,0 +1,15 @@
+#!/bin/bash
+
+STEAM_INSTALLATION_DIRS=(
+    "$HOME/.local/share/Steam/steamapps/common"
+)
+
+# find game directory
+#
+# $1 game directory name
+find_game_dir() {
+    for games in ${STEAM_INSTALLATION_DIRS[*]}; do
+        [[ -d "$games/$1" ]] && echo "$games/$1" || return 0
+    done
+    return 1
+}

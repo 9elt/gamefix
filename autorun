@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source .conf/config
+
+for game_dirs in ${STEAM_INSTALLATION_DIRS[*]}; do
+    for game in "$game_dirs"/*; do
+        target="${game//"$game_dirs/"/}"
+        [[ -f "$target" ]] || continue
+        echo -e "> $target"
+        bash "$target"
+    done
+done

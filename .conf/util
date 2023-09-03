@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Replace the entire content of an ini block
+#
+# $1 block name
+# $2 new block content
+# $3 ini filename
+replace_ini_block() {
+    perl -0pi -e "s/\[$1\].*?(?=\[)/\[$1\]$2\n/s" "$3"
+}
+
+# Replace variable within a block
+#
+# $1 block name
+# $2 variable name
+# $3 variable new value
+# $4 ini filename
+replace_ini_var_within() {
+    sed -i "/^\[$1\]/,/^\[/ s/^$2=.*/$2=$3/" "$4"
+}
+
+# Replace variable globally
+#
+# $1 variable name
+# $2 variable new value
+# $3 ini filename
+replace_ini_var_g() {
+    sed -i "s/^$1=.*/$1=$2/g" "$3"
+}

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+echo '
+    reference (1): https://www.pcgamingwiki.com/wiki/Killer_Is_Dead#Issues_fixed
+    reference (2): https://steamcommunity.com/app/261110/discussions/0/616198900648111213/#c517141624281000235
+
+    running: 
+    + Crash after boss fights | ref. (1) method 3
+
+    available:
+    - Japanese voice language plays some sounds in English | ref. (1) method 4
+    - Episode 4 Boss button mashing | ref. (2)
+
+    not available:
+    x Crash after boss fights | ref. (1) methods 1, 2
+'
+
+source .conf/config
+source .conf/util
+
+GAME_DIR="$(find_game_dir KillerIsDead)"
+
+
+# Crash after boss fights | ref. (1) method 3
+
+block="
+MaxChannels=64
+CommonAudioPoolSize=320
+MinCompressedDurationGame=0.3
+MinCompressedDurationEditor=500
+LowPassFilterResonance=0.9
+WorkAroundXDKRegression=FALSE
+"
+replace_ini_block XAudio2.XAudio2Device "$block" "$GAME_DIR/KidGame/Config/KidEngine.ini"
+
+
+# # Japanese voice language plays some sounds in English | ref. (1) method 4
+
+# replace_ini_var_within Engine.Engine Language JPN "$GAME_DIR/KidGame/Config/KidEngine.ini"
+
+
+# # Episode 4 Boss not going down | ref. (2)
+
+# replace_ini_var_g mfMaxTakeDamageAmountForEscape 1 "$GAME_DIR/KidGame/Config/KidBoss_David1.ini"
