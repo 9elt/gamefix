@@ -15,7 +15,9 @@ echo '
     x Crash after boss fights | ref. (1) methods 1, 2
 '
 
+# shellcheck source=../.conf/config
 source .conf/config
+# shellcheck source=../.conf/util
 source .conf/util
 
 GAME_DIR="$(find_game_dir KillerIsDead)"
