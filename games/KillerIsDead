@@ -44,3 +44,4 @@ replace_ini_block XAudio2.XAudio2Device "$block" "$GAME_DIR/KidGame/Config/KidEn
 # # Episode 4 Boss not going down | ref. (2)
 
 # replace_ini_var_g mfMaxTakeDamageAmountForEscape 1 "$GAME_DIR/KidGame/Config/KidBoss_David1.ini"
+# replace_ini_var_g mfMaxTakeDamageAmountForEscape 1 "$GAME_DIR/KidGame/Config/KidBoss_David2.ini"
